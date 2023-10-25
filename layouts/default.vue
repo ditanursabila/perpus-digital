@@ -1,7 +1,7 @@
 <template>
   <div>
-    <header> Book Search Tool</header>
-
-    <slot/>
+    <Header />
+    
+    <slot />
   </div>
 </template>
