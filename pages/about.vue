@@ -2,7 +2,7 @@
   <div class="card mb-3 justify-content-center" style="max-width: 540px">
     <div class="row g-0">
       <div class="col-md-4">
-        <img src="book.cover" alt="cover" class="cover" />
+        <img src="" alt="cover" class="cover" />
       </div>
       <div class="col-md-8">
         <div class="card-body">
