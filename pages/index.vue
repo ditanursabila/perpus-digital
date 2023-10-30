@@ -6,16 +6,18 @@
         <input v-model="keyword" class="form-control form-control-lg rounded-pill" placeholder="Mau baca buku apa nihh.." />
       </form>
     </div>
-    <div class="row">
-      <div v-for="book in books" :key="book.id" class="col-2" style="margin-bottom: 20px">
-        <div class="card">
-          <div class="card-header">
-            <img :src="book.cover" alt="cover" class="cover" />
-            <p>{{ book.judul }}</p>
+    <RouterLink to="/about">
+      <div class="row">
+        <div v-for="book in books" :key="book.id" class="col-2" style="margin-bottom: 20px">
+          <div class="card">
+            <div class="card-header">
+              <img :src="book.cover" alt="cover" class="cover" />
+              <p>{{ book.judul }}</p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </RouterLink>
   </div>
 </template>
 
