@@ -1,7 +1,9 @@
 <template>
   <div>
     <Header />
-    
-    <slot />
+
+    <div class="container-fluid">
+      <slot />
+    </div>
   </div>
 </template>

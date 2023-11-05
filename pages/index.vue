@@ -1,23 +1,28 @@
 <template>
   <div>
-    <h4>Cari buku yang kamu mau disini</h4>
-    <div class="my-3">
-      <form @submit.prevent="getData">
-        <input v-model="keyword" class="form-control form-control-lg rounded-pill" placeholder="Mau baca buku apa nihh.." />
-      </form>
+    <h4>Buku Yang Tersedia di Perpustakaan</h4>
+    <div class="row">
+      <div class="col">
+        <div class="my-3">
+          <form @submit.prevent="getData">
+            <input v-model="keyword" class="form-control form-control-lg rounded-pill" placeholder="Cari buku yang kamu mau disini.." />
+          </form>
+        </div>
+      </div>
     </div>
-    <RouterLink to="/about">
-      <div class="row">
-        <div v-for="book in books" :key="book.id" class="col-2" style="margin-bottom: 20px">
-          <div class="card">
+
+    <div class="row">
+      <div v-for="book in books" :key="book.id" class="col-2">
+        <div class="card mb-3">
+          <NuxtLink :to="`/book/${book.id}`">
             <div class="card-header">
               <img :src="book.cover" alt="cover" class="cover" />
               <p>{{ book.judul }}</p>
             </div>
-          </div>
+          </NuxtLink>
         </div>
       </div>
-    </RouterLink>
+    </div>
   </div>
 </template>
 
@@ -45,7 +50,7 @@ async function getData() {
 
 <style scoped>
 .cover {
-  width: 50%;
+  width: 100%;
   margin-bottom: 50px;
 }
 </style>
