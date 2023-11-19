@@ -11,12 +11,18 @@
       <div v-if="loading">Sedang memuat data...</div>
       <div v-else>
         <h5>Judul: {{ book.judul }}</h5>
-        <h6>Kategori: {{ book.kategori.nama }}</h6>
-        <h6>Rak: {{ book.rak.kode }}</h6>
-        <h6>Penulis: {{ book.penulis }}</h6>
-        <h6>Penerbit: {{ book.penerbit }}</h6>
-        <h6>Tahun terbit: {{ book.tahun_terbit }}</h6>
-      </div>
+        <p>Kategori: {{ book.kategori.nama }}</p>
+        <p>Rak: {{ book.rak.kode }}</p>
+        <p>Penulis: {{ book.penulis }}</p>
+        <p>Penerbit: {{ book.penerbit }}</p>
+        <p>Tahun terbit: {{ book.tahun_terbit }}</p>
+        <p>Jumlah halaman: {{ book.jumlah_hal }}</p>
+        <p>No ISBN: {{ book.no_isbn }}</p>
+        <p>
+          Sinopsis/deskripsi:<br />
+          {{ book.deskripsi }}
+        </p>
+      </div>    
     </div>
   </div>
 </template>
@@ -37,7 +43,8 @@ async function getData() {
     .select(
       `
         id, judul, penulis, penerbit,
-        kategori(nama), rak(kode),cover, tahun_terbit
+        kategori(nama), rak(kode),cover, 
+        tahun_terbit, jumlah_hal, no_isbn,deskripsi
       `
     )
     .eq("id", id_buku);

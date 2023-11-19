@@ -12,12 +12,21 @@
     </div>
 
     <div class="row">
+      <div v-if="loading">
+        <div class="text-center">
+          <button class="btn btn-primary" type="button" disabled>
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Sedang memuat buku...
+          </button>
+        </div>
+      </div>
+
       <div v-for="book in books" :key="book.id" class="col-2">
         <div class="card mb-3">
           <NuxtLink :to="`/book/${book.id}`">
             <div class="card-header">
               <img :src="book.cover" alt="cover" class="cover" />
-              <p>{{ book.judul }}</p>
+              <h6>{{ book.judul }}</h6>
             </div>
           </NuxtLink>
         </div>
@@ -30,10 +39,12 @@
 const supabase = useSupabaseClient();
 const books = ref([]);
 const keyword = ref([]);
+const loading = ref(true);
 
 onMounted(() => getData());
 
 async function getData() {
+  loading.value = true;
   const { data, error } = await supabase
     .from("buku")
     .select(
@@ -43,7 +54,10 @@ async function getData() {
     `
     )
     .ilike("judul", `%${keyword.value}%`);
-  if (data) books.value = data;
+  if (data) {
+    books.value = data;
+    loading.value = false;
+  }
   if (error) throw error;
 }
 </script>
